@@ -1,0 +1,9 @@
+SiteTree:
+  extensions:
+    - AdminSectionsExtension
+LeftAndMain:
+  extensions:
+    - AdminSections_LeftAndMainExtension
+#CMSMenu:
+#  menu_item_changes:
+#    - {type: remove, code: AdminSectionsMain}
