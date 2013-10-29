@@ -18,6 +18,7 @@ class AdminSectionsMain extends CMSMain
 
 	public static $url_handlers = array(
 		'$URLSegment/EditForm' => 'EditForm',
+                '$URLSegment/ListViewForm' => 'ListViewForm',
 		'$URLSegment/$Action/$ID' => '$Action',
 		'$URLSegment' => 'index'
 	);
@@ -29,7 +30,7 @@ class AdminSectionsMain extends CMSMain
 		'show',
 		'history',
 		'settings',
-		'EditForm'
+		'EditForm',
 	);
 
 
@@ -111,6 +112,14 @@ class AdminSectionsMain extends CMSMain
 		//$defaultTitle = $this->section->Title;
 		$items[0]->Title = 'Show All';
 		$items[0]->Link = $this->Link();
+
+                //if top level, add link to top level page in this section
+                if (count($items) == 1 && $this->section) {
+                        $items[1] = ArrayData::create(array(
+                                'Title' => $this->section->Title,
+                                'Link' => $this->Link('show') . '/' . $this->section->ID
+                        ));
+                }
 
 		return $items;
 	}
